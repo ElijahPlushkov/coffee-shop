@@ -206,7 +206,7 @@
                         
                         <div class="card-footer row">
                             <button id="brazCoffeeLess" type="button" class="btn btn-secondary col-4">-</button>
-                            <div class="col-4 d-flex justify-content-center align-items-center" id="brazCoffeeQuantity"></div>
+                            <div class="col-4 d-flex justify-content-center align-items-center" id="brazCoffeeQuantity">0</div>
                             <button id="brazCoffeeMore" type="button" class="btn btn-secondary col-4">+</button>
                         </div>
                         <div class="card-footer row">
@@ -227,13 +227,20 @@
                         <h5 class="card-title">African Coffee</h5>
                         <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
                         <div class="row">
-                            <p class="card-text col-6">Price: $12</p>
+                            <p class="card-text col-6" >Price: $<span id="afrPrice">12</span></p>
                             <p class="card-text col-6">Quantity: 1kg</p>
                         </div>
                         <div class="card-footer row">
-                            <button type="button" class="btn btn-secondary col-4">-</button>
-                            <div class="col-4 d-flex justify-content-center align-items-center">1</div>
-                            <button type="button" class="btn btn-secondary col-4">+</button>
+                            <button id="afrCoffeeLess" type="button" class="btn btn-secondary col-4">-</button>
+                            <div class="col-4 d-flex justify-content-center align-items-center" id="afrCoffeeQuantity">0</div>
+                            <button id="afrCoffeeMore" type="button" class="btn btn-secondary col-4">+</button>
+                        </div>
+                        <div class="card-footer row">
+                            <div class="card" style="width: 20rem;">
+                                <ul class="list-group list-group-flush">
+                                  <li class="list-group-item">Cost: $<span id="afrCost">0</span></li>
+                                </ul>
+                              </div>
                         </div>
                     </div>
                 </div>
@@ -253,6 +260,13 @@
                             <button type="button" class="btn btn-secondary col-4">-</button>
                             <div class="col-4 d-flex justify-content-center align-items-center">1</div>
                             <button type="button" class="btn btn-secondary col-4">+</button>
+                        </div>
+                        <div class="card-footer row">
+                            <div class="card" style="width: 20rem;">
+                                <ul class="list-group list-group-flush">
+                                  <li class="list-group-item">Cost: $<span id="japCost">0</span></li>
+                                </ul>
+                              </div>
                         </div>
                     </div>
                 </div>
