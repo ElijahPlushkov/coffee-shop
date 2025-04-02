@@ -1,15 +1,12 @@
-// General section
 let totalPrice = 0;
 let totalQuantityDisplay = 0;
 let items = [];
 let change;
 
-// DOM elements
 const totalQuantity = document.getElementById("totalQuantity");
 const itemsDisplay = document.getElementById("itemsDisplay");
 const totalPriceDisplay = document.getElementById("totalPrice");
 
-// Product configuration
 const products = {
   brazCoffee: {
     name: "Brazilian Coffee",
@@ -20,6 +17,7 @@ const products = {
     moreButton: document.getElementById("brazCoffeeMore"),
     lessButton: document.getElementById("brazCoffeeLess")
   },
+
   afrCoffee: {
     name: "African Coffee",
     price: 12,
@@ -28,10 +26,19 @@ const products = {
     quantity: 0,
     moreButton: document.getElementById("afrCoffeeMore"),
     lessButton: document.getElementById("afrCoffeeLess")
+  },
+
+  japCoffee: {
+    name: "Japanese Coffee",
+    price: 17,
+    quantityElement: document.getElementById("japCoffeeQuantity"),
+    costElement: document.getElementById("japCost"),
+    quantity: 0,
+    moreButton: document.getElementById("japCoffeeMore"),
+    lessButton: document.getElementById("japCoffeeLess")
   }
 };
 
-// Initialize all products
 function initializeProducts() {
   for (const productId in products) {
     const product = products[productId];
@@ -41,21 +48,16 @@ function initializeProducts() {
   }
 }
 
-// Update quantity function
 function updateQuantity(productId, change) {
   const product = products[productId];
   
-  // Calculate new quantity
   const newQuantity = product.quantity + change;
   
-  // Validate for less button (can't go below 0)
   if (newQuantity < 0) return;
   
-  // Update product quantity
   product.quantity = newQuantity;
   product.quantityElement.textContent = product.quantity;
   
-  // Update totals
   totalQuantityDisplay += change;
   totalQuantity.textContent = totalQuantityDisplay;
   
@@ -74,17 +76,19 @@ function updateItemsList(product) {
 
   const itemIndex = items.indexOf(product.name);
   
-  if (product.quantity === 1) {
-    // Adding first item
+  if (product.quantity === 1 && itemIndex === -1) {
     items.push(product.name);
   } 
-  else if (product.quantity === 0) {
-    // Removing last item
+  else if (product.quantity < 1) {
     if (itemIndex !== -1) {
       items.splice(itemIndex, 1);
     }
   }
 }
 
-// Initialize the application
 initializeProducts();
+
+function showCheckOutSection() {
+  const checkOutSection = document.getElementById("checkOutSection");
+  checkOutSection.classList.remove("d-none");
+}

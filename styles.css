@@ -191,6 +191,10 @@ a:hover {
     background-color: black;
 }
 
+#buySection img {
+    height: 30%;
+}
+
 /* Learn More */
 .h1-underline {
     width: 40%;
