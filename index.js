@@ -15,7 +15,7 @@ const products = {
     costElement: document.getElementById("brazCost"),
     quantity: 0,
     moreButton: document.getElementById("brazCoffeeMore"),
-    lessButton: document.getElementById("brazCoffeeLess")
+    lessButton: document.getElementById("brazCoffeeLess"),
   },
 
   afrCoffee: {
@@ -25,7 +25,7 @@ const products = {
     costElement: document.getElementById("afrCost"),
     quantity: 0,
     moreButton: document.getElementById("afrCoffeeMore"),
-    lessButton: document.getElementById("afrCoffeeLess")
+    lessButton: document.getElementById("afrCoffeeLess"),
   },
 
   japCoffee: {
@@ -35,14 +35,15 @@ const products = {
     costElement: document.getElementById("japCost"),
     quantity: 0,
     moreButton: document.getElementById("japCoffeeMore"),
-    lessButton: document.getElementById("japCoffeeLess")
+    lessButton: document.getElementById("japCoffeeLess"),
   }
 };
+
 
 function initializeProducts() {
   for (const productId in products) {
     const product = products[productId];
-    
+
     product.moreButton.addEventListener("click", () => updateQuantity(productId, 1));
     product.lessButton.addEventListener("click", () => updateQuantity(productId, -1));
   }
@@ -87,8 +88,3 @@ function updateItemsList(product) {
 }
 
 initializeProducts();
-
-function showCheckOutSection() {
-  const checkOutSection = document.getElementById("checkOutSection");
-  checkOutSection.classList.remove("d-none");
-}
