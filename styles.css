@@ -214,3 +214,9 @@ a:hover {
 .footer ul i {
     color: var(--premary-color-highlight);
 }
+
+.order-card {
+    max-width: 600px;
+    margin: 30px auto;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
