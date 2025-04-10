@@ -168,11 +168,6 @@ orderBtn.addEventListener("click", async function () {
     button.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Оплата...`;
 
     try {
-
-        document.getElementById('hiddenItems').value = document.getElementById('itemsDisplay').textContent;
-        document.getElementById('hiddenTotalQuantity').value = document.getElementById('totalQuantity').textContent;
-        document.getElementById('hiddenTotalPrice').value = document.getElementById('totalPrice').textContent;
-        
         const formData = new FormData(document.getElementById('shippingForm'));
         const response = await fetch(`fakePayment.php`, {
             method: `POST`,

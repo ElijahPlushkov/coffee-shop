@@ -308,28 +308,26 @@
                 </div>
                 <div class="modal-body">
                     <p class="lead">Fill out this form and we will send your order ASAP</p>
-                    <div class="container">
-                        <div class="row h-100 mt-1" id="">
-                            <form class="col-11" id="shippingForm" method="post">
-                                <div class="col-12 col-lg-9">
-                                    <h5>Your order</h5>
-                                    <div class="card">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item bg-light">Items: <span id="itemsDisplay" name="items"></span></li>
-                                            <li class="list-group-item bg-light">Quantity: <span id="totalQuantity"
-                                                    name="totalQuantity">0</span>
-                                            </li>
-                                            <li class="list-group-item">Total: $<span id="totalPrice" name="totalPrice">0</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                        
-                                <h5 class="mt-2">Where to send your order?</h5>
-                                <div class="col-12">
+
+                    <div class="row h-100 mt-5" id="">
+                        <div class="col-10 col-sm-6 mt-4">
+                            <h5>Your order</h5>
+                            <div class="card">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item bg-light">Items: <span id="itemsDisplay" name="items"></span></li>
+                                    <li class="list-group-item bg-light">Quantity: <span id="totalQuantity" name="totalQuantity">0</span>
+                                    </li>
+                                    <li class="list-group-item">Total: $<span id="totalPrice" name="totalPrice">0</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-10 col-sm-6 mt-4">
+                            <h5>Where to send your order?</h5>
+                            <form class="row g-3" id="shippingForm" method="post">
+                                <div class="col-md-6">
                                     <label for="email" class="form-label">Email</label><i id="emailSuccess"
                                         class="bi bi-cup-hot-fill text-success d-none ms-1"></i>
-                                    <input type="email" class="form-control bg-light" id="email" name="email"
-                                        onblur="validateEmail(this)">
+                                    <input type="email" class="form-control bg-light" id="email" name="email" onblur="validateEmail(this)">
                                     <div id="emailError" class="invalid-input text-danger d-none">
                                         Please enter your email.
                                     </div>
@@ -337,8 +335,8 @@
                                 <div class="col-12">
                                     <label for="address" class="form-label">Address</label><i id="addressSuccess"
                                         class="bi bi-cup-hot-fill text-success d-none ms-1"></i>
-                                    <input type="text" class="form-control bg-light" id="address" placeholder="1234 Main St"
-                                        name="address" onblur="validateAddress(this)">
+                                    <input type="text" class="form-control bg-light" id="address"
+                                        placeholder="1234 Main St" name="address" onblur="validateAddress(this)">
                                     <div id="addressError" class="invalid-input text-danger d-none">
                                         Please enter your address.
                                     </div>
@@ -352,7 +350,7 @@
                                         Please enter your address.
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-md-7">
                                     <label for="city" class="form-label">City</label><i id="citySuccess"
                                         class="bi bi-cup-hot-fill text-success d-none ms-1"></i>
                                     <input type="text" class="form-control bg-light" id="city" name="city" onblur="validateCity(this)">
@@ -360,7 +358,7 @@
                                         Please enter your city.
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-md-5">
                                     <label for="zip" class="form-label">Zip</label><i id="zipSuccess"
                                         class="bi bi-cup-hot-fill text-success d-none ms-1"></i>
                                     <input type="text" class="form-control bg-light" id="zip" name="zip" onblur="validateZip(this)">
@@ -368,22 +366,17 @@
                                         Please enter your zip.
                                     </div>
                                 </div>
-                                <input type="hidden" name="items" id="hiddenItems">
-                                <input type="hidden" name="totalQuantity" id="hiddenTotalQuantity">
-                                <input type="hidden" name="totalPrice" id="hiddenTotalPrice">
-                                <div class="col-12 d-none invalid-input text-danger mt-3" id="formError">Check the form again please</div>
-                                <div class="col-12 mt-3">
+                                <div class="col-md-5 d-none invalid-input text-danger" id="formError">Check the form again please</div>
+                                <div class="col-12">
                                     <button type="button" class="btn btn-secondary" id="orderBtn">Order</button>
                                 </div>
                             </form>
                         </div>
                     </div>
-                
                 </div>
-                </div>
-                </div>
-                </div>
-                </div>
+            </div>
+        </div>
+    </div>
     <!--Modal Window End-->
 
     <!--Section Learn More Start-->

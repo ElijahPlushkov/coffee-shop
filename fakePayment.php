@@ -34,5 +34,5 @@ file_put_contents($ordersFile, json_encode($orders, JSON_PRETTY_PRINT));
 echo json_encode([
     'id' => $order['id'],
     'status' => 'succeeded',
-    'confirmation_url' => 'success.php?status=success&payment_id=' . $order['id']
+    'confirmation_url' => 'success.php?status=success'
 ]);
