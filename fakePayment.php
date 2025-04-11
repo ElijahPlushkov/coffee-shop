@@ -24,8 +24,6 @@ $order = [
     'date' => date('D-m-y H:i:s')
 ];
 
-file_put_contents('orders.json', json_encode($order, JSON_PRETTY_PRINT), FILE_APPEND);
-
 $ordersFile = 'orders.json';
 $orders = file_exists($ordersFile) ? json_decode(file_get_contents($ordersFile), true) : [];
 $orders[] = $order;
@@ -34,5 +32,61 @@ file_put_contents($ordersFile, json_encode($orders, JSON_PRETTY_PRINT));
 echo json_encode([
     'id' => $order['id'],
     'status' => 'succeeded',
-    'confirmation_url' => 'success.php?status=success'
+    'confirmation_url' => 'success.php?status=success&payment_id=' . $order['id']
 ]);
+
+//php mailer
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $address = $_POST['address'];
+    $address2 = $_POST['address2'];
+    $city = $_POST['city'];
+    $zip = $_POST['zip'];
+    $items = $_POST['items'];
+    $totalQuantity = $_POST['totalQuantity'];
+    $totalPrice = $_POST['totalPrice'];
+
+
+    $mail = new PHPMailer(true);
+
+    try {
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'plushabeststyle@gmail.com';
+        $mail->Password = 'uhfg eyhj urqx firo';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
+
+        $mail->setFrom('plushabeststyle@gmail.com', 'New order');
+        $mail->addAddress('plushabeststyle@gmail.com', 'Recipient Name');
+
+        $mail->isHTML(true);
+        $mail->Subject = 'New Contact Form Submission';
+        $mail->Body = "<h2>New Order</h2>
+<p><strong>email:</strong> $email</p>
+<p><strong>address:</strong> $address</p>
+<p><strong>address2:</strong> $address2</p>
+<p><strong>city:</strong> $city</p>
+<p><strong>zip:</strong> $zip</p>
+    <p>items: $items</p>
+    <p>quantity: $totalQuantity</p>
+    <p>total price: $totalPrice</p>";
+
+        if ($mail->send()) {
+//            header("Location: success.php");
+            exit();
+        } else {
+            echo "Message could not be sent.";
+        }
+    } catch (Exception $e) {
+        echo "Mailer Error: {$mail->ErrorInfo}";
+    }
+}

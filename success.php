@@ -68,7 +68,7 @@ if (isset($_GET['payment_id'])) {
                 </div>
             <?php endif; ?>
 
-            <a href="/" class="btn btn-primary">Вернуться на главную</a>
+            <a href="http://localhost:8080/Coffee%20Shop/" class="btn btn-primary">Вернуться на главную</a>
         </div>
     </div>
 </div>
