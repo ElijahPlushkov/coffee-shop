@@ -2,6 +2,7 @@
 header('Content-Type: text/html; charset=utf-8');
 
 $searchTerm = $_GET['query'] ?? '';
+$sortOrder = $_GET['sort'] ?? 'newest';
 
 $ordersFile = 'orders.json';
 $allOrders = [];
@@ -24,6 +25,13 @@ $filteredOrders = array_filter($allOrders, function ($order) use ($searchTerm) {
    }
    return false;
 });
+
+usort($filteredOrders, function($a, $b) use ($sortOrder) {
+   $dateA = strtotime($a['date']);
+   $dateB = strtotime($b['date']);
+
+   return ($sortOrder === 'newest') ? $dateB <=> $dateA : $dateA <=> $dateB;
+});
 ?>
 
 <!DOCTYPE html>
@@ -31,12 +39,6 @@ $filteredOrders = array_filter($allOrders, function ($order) use ($searchTerm) {
 <head>
     <title>Order Search</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        table { border-collapse: collapse; width: 100%; }
-        th, td { border: 1px solid #ddd; padding: 8px; }
-        th { background-color: #f2f2f2; }
-    </style>
 </head>
 <body>
 
@@ -44,6 +46,11 @@ $filteredOrders = array_filter($allOrders, function ($order) use ($searchTerm) {
     <h1>Order Search</h1>
     <input type="text" name="query" value="<?= htmlspecialchars($searchTerm) ?>">
     <button type="submit">Search</button>
+
+    <select name="sort">
+        <option value="newest" <?= $sortOrder === 'newest' ? 'selected' : '' ?>>Newest First</option>
+        <option value="oldest" <?= $sortOrder === 'oldest' ? 'selected' : '' ?>>Oldest First</option>
+    </select>
 </form>
 
 <div class="container">
@@ -52,7 +59,8 @@ $filteredOrders = array_filter($allOrders, function ($order) use ($searchTerm) {
     <?php if (empty($filteredOrders)): ?>
         <p>No orders found.</p>
     <?php else: ?>
-        <table>
+        <table class="table table-striped table-bordered table-hover">
+            <thead class="table-success">
             <tr>
                 <th>Order ID</th>
                 <th>Email</th>
@@ -60,6 +68,8 @@ $filteredOrders = array_filter($allOrders, function ($order) use ($searchTerm) {
                 <th>Total</th>
                 <th>Date</th>
             </tr>
+            </thead>
+            <tbody>
             <?php foreach ($filteredOrders as $order): ?>
                 <tr>
                     <td><?= htmlspecialchars($order['id'] ?? '') ?></td>
@@ -69,6 +79,7 @@ $filteredOrders = array_filter($allOrders, function ($order) use ($searchTerm) {
                     <td><?= htmlspecialchars($order['date'] ?? '') ?></td>
                 </tr>
             <?php endforeach; ?>
+            </tbody>
         </table>
     <?php endif; ?>
 <?php endif; ?>
