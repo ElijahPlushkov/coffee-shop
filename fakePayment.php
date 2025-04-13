@@ -1,6 +1,14 @@
 <?php
 header('Content-Type: application/json');
 
+require_once __DIR__ . '/formValidation.php';
+$errors = validateForm($_POST);
+if (array_filter($errors)) {
+    http_response_code(422);
+    echo json_encode(['errors' => $errors]);
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode(['error' => 'Only POST allowed']);
